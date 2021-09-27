@@ -1,6 +1,6 @@
 # Clip-Searcher
 Flask app which scrapes articles then: <ol>
-  <li> extracts the headline, url, byline and publish date from the article using the Article package built on NLTK</li>
+  <li>Extracts the headline, url, byline and publish date from the article using the Article package built on NLTK</li>
   <li>Summarizes the article  with a T5 Transformer and PyTorch</li>
   <li>Generates a Google sheet with pygsheets where the summaries and extracts are stored </li>
   <li>Generates a JSON file which can be used by D3 to create an interactive knowledge graph of names in the articles.</li>
