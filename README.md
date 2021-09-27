@@ -1,4 +1,4 @@
-# Clip-Searcher
+# Clip Searcher
 Flask app which scrapes articles then: <ol>
   <li>Extracts the headline, url, byline and publish date from the article using the Article package built on NLTK</li>
   <li>Summarizes the article  with a T5 Transformer and PyTorch</li>
