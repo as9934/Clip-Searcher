@@ -22,3 +22,5 @@ To address that issue I decided to create a "knowledge graph" of names. In layma
     <li>That if two names showed up in the same news article, there was a very good chance that they were related in some way and</li>
     <li>That if the same name showed up multiple times across various news articles, they were likely important to the topic.</li>
 </ol>
+
+You can view a sample of this here: https://observablehq.com/@as9934/a-force-directed-knowledge-graph-from-scraped-news-article/3
