@@ -275,7 +275,7 @@ def clip_search(query):
     #create a spreadsheet by combining the various lists as columns and set the column names
     df = pd.DataFrame(list(zip(headlines, news_urls, bylines, pub_dates, summaries, entities_list, ab_summaries)),columns =['Headline', 'URL', 'Byline(s)', 'Date Published', 'Key Sentences', 'Entities', 'Summary'])
 
-    x = {"web":{"client_id":"558327148700-vmg8ch0rm5ah9dve37oe0gh4k671sh8o.apps.googleusercontent.com","project_id":"clip-search-ai-310023","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"LZvoaPBafZ1zqPrmvWWjKrJB"}}
+    x = #your google sheets api stuff goes here
 
     y = json.dumps(x)
 
