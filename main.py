@@ -70,14 +70,14 @@ def clip_search(query):
     search_query.send_keys(query)
     search_query.send_keys(Keys.RETURN)
 
-    news_section = driver.find_element_by_class_name('hide-focus-ring').click()
+    news_section = driver.find_element_by_class_name('hdtb-mitem').click()
 
     more_results = driver.current_url + '&num=200'
     driver.get(more_results)
 
     news_urls = []
 
-    content_blocks = driver.find_elements_by_class_name("dbsr")
+    content_blocks = driver.find_elements_by_class_name("ftSUBd")
 
     for block in content_blocks:
         elements = block.find_elements_by_tag_name("a")
