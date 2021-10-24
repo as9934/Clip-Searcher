@@ -174,32 +174,25 @@ def clip_search(query):
             for l in people:
                 #we only want full names so only display names with spaces
                 if ' ' in l:
-                    #give the user approval over what is a name and what isn't
-                    print(f'Is {l} a persons full name? If yes, type "y"')
-                    x = input()
-                    if x == 'y':
-                        #strip all the whitespace
-                        l = l.strip()
-                        #as stated before we only want the same person once per url
-                        if l not in persons:
-                            persons.append(l)
-                        else:
-                            pass
-                        #store all the unique names for each url in the list we created outside of the loop
-                        for m in persons:
-                            people_list.append(m)
-                        
-                        #make each node for a particular url point to every other node in that url
-                        perm = permutations(persons, 2)
-                        
-                        for j in list(perm):
-                            perms = list(j)
-                            links.write('\t')
-                            links.write('\t')
-                            links.write('{"source": ' + f'"{perms[0]}", "target": ' + f'"{perms[1]}", "value": ' + f'"{i}"' + '},')
-                            links.write('\n')
+                    l = l.strip()
+                    #as stated before we only want the same person once per url
+                    if l not in persons:
+                        persons.append(l)
                     else:
                         pass
+                    #store all the unique names for each url in the list we created outside of the loop
+                    for m in persons:
+                        people_list.append(m)
+
+                    #make each node for a particular url point to every other node in that url
+                    perm = permutations(persons, 2)
+
+                    for j in list(perm):
+                        perms = list(j)
+                        links.write('\t')
+                        links.write('\t')
+                        links.write('{"source": ' + f'"{perms[0]}", "target": ' + f'"{perms[1]}", "value": ' + f'"{i}"' + '},')
+                        links.write('\n')
                 else:
                     pass
             #create every node
