@@ -37,16 +37,9 @@ nlp.add_pipe(coref, name='neuralcoref')
 st.title('clip-search.ai')
 
 def clip_search(query, count):
-    desired_cap = {
-        'os_version': 'Big Sur',
-        'resolution': '1920x1080',
-        'browser': 'Chrome',
-        'browser_version': 'latest',
-        'os': 'OS X',
-        'name': 'BStack-[Python] Sample Test', 
-        'build': 'BStack Build Number 1'}
-    
-    driver = webdriver.Remote(command_executor ='http://arisen2:WmX3RxEUQ5bvQjCquLJy@hub-cloud.browserstack.com/wd/hub', desired_capabilities = desired_cap)
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome('/chromedriver')
     
     graph = {}
 
