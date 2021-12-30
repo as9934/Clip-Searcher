@@ -254,9 +254,9 @@ def clip_search(query, count):
             else:
                 pass
             
-            df = pd.merge(df, dfa, how='inner', on=['toke_idx', 'urls']) #to get sent index for corefs 
+    df = pd.merge(df, dfa, how='inner', on=['toke_idx', 'urls']) #to get sent index for corefs 
 
-            for i in set(urls):
+    for i in set(urls):
         df2a = df.loc[df['urls'] == i]
         df3a = dfb.loc[df['urls'] == i]
         #get the sent_idx of every token with the same coref_idx
@@ -293,40 +293,8 @@ def clip_search(query, count):
                             links.append(link)
                     else:
                         pass
-                    #store all the unique names for each url in the list we created outside of the loop
-                    for m in persons:
-                        people_list.append(m)
-
-                    #make each node for a particular url point to every other node in that url
-                    perm = permutations(persons, 2)
-
-                    for j in list(perm):
-                        perms = list(j)
-                        links.write('\t')
-                        links.write('\t')
-                        links.write('{"source": ' + f'"{perms[0]}", "target": ' + f'"{perms[1]}", "value": ' + f'"{i}"' + '},')
-                        links.write('\n')
                 else:
-                    for m in range(0, len(x)):
-                        source = x[m][0]
-                        target = x[m][1]
-                        type1 = df3.loc[df3['name'] == source, 'label'].iloc[0]
-                        type2 = df3.loc[df3['name'] == target, 'label'].iloc[0]
-                        
-                        if type1 == 'ORG' and type2 == 'ORG':
-                            pass
-                        else:
-                            link['type'] = f'{type1}-{type2}'
-                            link['source'] = source
-                            link['target'] = target
-                            
-                        
-                        if link not in links:
-                            links.append(link)
-                        else:
-                            pass
-            else:
-                pass
+                    pass
     links = [link for link in links if link != {}]
 
     links_df = pd.DataFrame(links)
