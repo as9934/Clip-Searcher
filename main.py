@@ -199,7 +199,7 @@ def clip_search(query, count):
     dfa = pd.DataFrame(e)
     dfb  = pd.DataFrame(nodes)
 
-    dfb
+    return dfb
 
     # links = []
     # for j in list(set(dfb['urls'])):
@@ -308,6 +308,8 @@ x = st.text_input("Enter the search term:")
 num = st.number_input('Number of Articles to Search:', min_value=10, max_value=200, step=10)
 
 links = clip_search(x, num)
+
+links
 
 # G = nx.from_pandas_edgelist(links, 'source', 'target')
 
