@@ -306,10 +306,11 @@ def clip_search(query, count):
 
 x = st.text_input("Enter the search term:")
 num = st.number_input('Number of Articles to Search:', min_value=10, max_value=200, step=10)
-
-links = clip_search(x, num)
-
-links
+if x:
+    links = clip_search(x, num)
+    links
+else:
+    print('Enter search term')
 
 # G = nx.from_pandas_edgelist(links, 'source', 'target')
 
