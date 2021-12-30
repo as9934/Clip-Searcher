@@ -117,9 +117,9 @@ def clip_search(query, count):
     corefs = []
     coref_idx = []
     urls1 = []
-    for i in range(0, len(news_urls)):
+    for i in news_urls:
         try:
-            article = Article(news_urls[i])
+            article = Article(i)
             entities = []
             article.download()
             article.parse()
@@ -146,7 +146,7 @@ def clip_search(query, count):
                 for l in x:
                     counter += 1
                     toke_idx.append((counter - 1))
-                    urls.append(news_urls[i])
+                    urls.append(i)
         
             
 
@@ -155,7 +155,7 @@ def clip_search(query, count):
                 for mention in chain.mentions:
                     coref_idx.append(idx)
                     corefs.append(mention.start)
-                    urls1.append(news_urls[i])
+                    urls1.append(i)
                     
 
 
@@ -169,20 +169,20 @@ def clip_search(query, count):
                     ent_dict = {}
                     #we only want person or organization entities
                     if ee.label_ == 'PERSON':
-                        ent_dict['name'] = ee.text.replace('\n',' ').replace("’s'", "").strip()
+                        ent_dict['name'] = ee.text.replace('\n',' ').replace("'s'", "").strip()
                         ent_dict['label'] = ee.label_
                         ent_dict['sent_idx'] = k
                         ent_dict['start'] = ee.start
                         ent_dict['end'] = ee.end
-                        ent_dict['urls'] = news_urls[i]
+                        ent_dict['urls'] = i
                         nodes.append(ent_dict)
                     elif ee.label_ == 'ORG':
-                        ent_dict['name'] = ee.text.replace('\n',' ').replace("’s", "").strip()
+                        ent_dict['name'] = ee.text.replace('\n',' ').replace("'s", "").strip()
                         ent_dict['label'] = ee.label_
                         ent_dict['sent_idx'] = k 
                         ent_dict['start'] = ee.start
                         ent_dict['end'] = ee.end
-                        ent_dict['urls'] = news_urls[i]
+                        ent_dict['urls'] = i
                         nodes.append(ent_dict)
                     else:
                         pass
