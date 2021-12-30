@@ -39,7 +39,7 @@ st.title('clip-search.ai')
 def clip_search(query, count):
     chrome_options = Options()
     chrome_options.add_argument("--headless")
-    driver = webdriver.Chrome('/chromedriver')
+    driver = webdriver.Chrome('chromedriver')
     
     graph = {}
 
