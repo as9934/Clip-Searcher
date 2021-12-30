@@ -303,9 +303,7 @@ def clip_search(query, count):
 
 x = st.text_input("Enter the search term:")
 
-count_list = [10, 20, 30, 40, 50, 100, 200]
-
-num = st.multiselect('Number of Articles to Search:', count_list)
+num = st.number_input('Number of Articles to Search:', min_value=10, max_value=200, step=10)
 
 links = clip_search(x, num)
 
