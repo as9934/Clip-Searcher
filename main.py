@@ -119,7 +119,6 @@ def clip_search(query, count):
     urls1 = []
     for i in news_urls:
         article = Article(i)
-        entities = []
         article.download()
         article.parse()
         article.nlp()
