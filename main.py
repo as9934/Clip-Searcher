@@ -188,10 +188,9 @@ def clip_search(query, count):
                         pass
         except:
             pass
-    print(urls)
     # d =  {'sent_idx': sent_idx, 'toke_idx':toke_idx, 'urls':urls}
     # e = {'toke_idx':corefs, 'coref_idx': coref_idx, 'urls':urls1}
-    return d
+    return urls
     # df = pd.DataFrame(d)
     # dfa = pd.DataFrame(e)
     # dfb  = pd.DataFrame(nodes)
