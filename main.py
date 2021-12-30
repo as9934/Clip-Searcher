@@ -108,10 +108,6 @@ def clip_search(query, count):
 
     driver.quit()
 
-    ##Entity extraction 
-
-    #for each entity we need the entity type (person or org), the sentence index, the word index, the article its in, coreference chain 
-
     nodes = []
 
     urls = []
@@ -304,13 +300,14 @@ def clip_search(query, count):
     # return links_df
 
 
-x = st.text_input("Enter the search term:")
-num = st.number_input('Number of Articles to Search:', min_value=10, max_value=200, step=10)
-if x:
-    links = clip_search(x, num)
-    links
-else:
-    print('Enter search term')
+with st.form('my_form'):
+    st.write('Enter the following values:')
+    x = st.text_input('Enter your search query:')
+    num = st.number_input('Number of Articles to Search:', min_value=10, max_value=200, step=10)
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+        links = clip_search(x, num)
+        st.dataframe(links)
 
 # G = nx.from_pandas_edgelist(links, 'source', 'target')
 
