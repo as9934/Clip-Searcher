@@ -199,107 +199,109 @@ def clip_search(query, count):
     dfa = pd.DataFrame(e)
     dfb  = pd.DataFrame(nodes)
 
-    links = []
-    for j in list(set(dfb['urls'])):
-        df1a = dfb.loc[dfb['urls'] == j]
-        for i in list(set(df1a['sent_idx'])): #filter to that sentence
-            link = {}
-            df1 = df1a.loc[df1a['sent_idx'] == i]
-            if len(df1) > 1:
-                name1 = df1['name']
-                name2 = df1['name']
-                x = product(name1, name2)
-                x = list(x)
-                x = [k for k in x if k[0] !=  k[1]] #delete links where both nodes are the same
-                x = list(unique_everseen(x, key=frozenset)) #delete reverse tuples
-                x = [l for l in x if l[0] != '' and l[1] != ''] #delete links with empty strings
+    dfb
+
+    # links = []
+    # for j in list(set(dfb['urls'])):
+    #     df1a = dfb.loc[dfb['urls'] == j]
+    #     for i in list(set(df1a['sent_idx'])): #filter to that sentence
+    #         link = {}
+    #         df1 = df1a.loc[df1a['sent_idx'] == i]
+    #         if len(df1) > 1:
+    #             name1 = df1['name']
+    #             name2 = df1['name']
+    #             x = product(name1, name2)
+    #             x = list(x)
+    #             x = [k for k in x if k[0] !=  k[1]] #delete links where both nodes are the same
+    #             x = list(unique_everseen(x, key=frozenset)) #delete reverse tuples
+    #             x = [l for l in x if l[0] != '' and l[1] != ''] #delete links with empty strings
                 
-                if len(x) == 0:
-                    pass
-                elif len(x) == 1:
-                    source = x[0][0]
-                    target = x[0][1]
-                    type1 = df1.loc[df1['name'] == source, 'label'].iloc[0]
-                    type2 = df1.loc[df1['name'] == target, 'label'].iloc[0]
+    #             if len(x) == 0:
+    #                 pass
+    #             elif len(x) == 1:
+    #                 source = x[0][0]
+    #                 target = x[0][1]
+    #                 type1 = df1.loc[df1['name'] == source, 'label'].iloc[0]
+    #                 type2 = df1.loc[df1['name'] == target, 'label'].iloc[0]
                     
-                    if type1 == 'ORG' and type2 == 'ORG':
-                        pass
-                    else:
-                        link['source'] = source
-                        link['target'] = target
-                        link['type'] = f'{type1}-{type2}'
+    #                 if type1 == 'ORG' and type2 == 'ORG':
+    #                     pass
+    #                 else:
+    #                     link['source'] = source
+    #                     link['target'] = target
+    #                     link['type'] = f'{type1}-{type2}'
                     
-                    if link not in links:
-                            links.append(link)
-                    else:
-                        pass
-                else:
-                    for m in range(0, len(x)):
-                        source = x[m][0]
-                        target = x[m][1]
-                        type1 = df1.loc[df1['name'] == source, 'label'].iloc[0]
-                        type2 = df1.loc[df1['name'] == target, 'label'].iloc[0]
-                        if type1 == 'ORG' and type2 == 'ORG':
-                            pass
-                        else:
-                            link['source'] = source
-                            link['target'] = target
-                            link['type'] = f'{type1}-{type2}'
+    #                 if link not in links:
+    #                         links.append(link)
+    #                 else:
+    #                     pass
+    #             else:
+    #                 for m in range(0, len(x)):
+    #                     source = x[m][0]
+    #                     target = x[m][1]
+    #                     type1 = df1.loc[df1['name'] == source, 'label'].iloc[0]
+    #                     type2 = df1.loc[df1['name'] == target, 'label'].iloc[0]
+    #                     if type1 == 'ORG' and type2 == 'ORG':
+    #                         pass
+    #                     else:
+    #                         link['source'] = source
+    #                         link['target'] = target
+    #                         link['type'] = f'{type1}-{type2}'
                         
-                        if link not in links:
-                            links.append(link)
-                        else:
-                            pass
+    #                     if link not in links:
+    #                         links.append(link)
+    #                     else:
+    #                         pass
                         
-            else:
-                pass
+    #         else:
+    #             pass
             
-    df = pd.merge(df, dfa, how='inner', on=['toke_idx', 'urls']) #to get sent index for corefs 
+    # df = pd.merge(df, dfa, how='inner', on=['toke_idx', 'urls']) #to get sent index for corefs 
 
-    for i in set(urls):
-        df2a = df.loc[df['urls'] == i]
-        df3a = dfb.loc[df['urls'] == i]
-        #get the sent_idx of every token with the same coref_idx
-        for j in set(df2a['coref_idx']):
-            df2 = df2a.loc[df2a['coref_idx'] == j]
-            if len(set(df2['sent_idx'])) > 1:
-                link  = {}
-                coref_sents = list(set(df2['sent_idx']))
-                df3 = df3a[df3a['sent_idx'].isin(coref_sents)]
-                name1 = list(df3['name'])
-                name2 = name1
-                x = list(product(name1, name2))
-                x = [k for k in x if k[0] !=  k[1]] #delete links where both nodes are the same
-                x = list(unique_everseen(x, key=frozenset)) #delete reverse tuples
-                x = [l for l in x if l[0] != '' and l[1] != ''] #delete links with empty strings
+    # for i in set(urls):
+    #     df2a = df.loc[df['urls'] == i]
+    #     df3a = dfb.loc[df['urls'] == i]
+    #     #get the sent_idx of every token with the same coref_idx
+    #     for j in set(df2a['coref_idx']):
+    #         df2 = df2a.loc[df2a['coref_idx'] == j]
+    #         if len(set(df2['sent_idx'])) > 1:
+    #             link  = {}
+    #             coref_sents = list(set(df2['sent_idx']))
+    #             df3 = df3a[df3a['sent_idx'].isin(coref_sents)]
+    #             name1 = list(df3['name'])
+    #             name2 = name1
+    #             x = list(product(name1, name2))
+    #             x = [k for k in x if k[0] !=  k[1]] #delete links where both nodes are the same
+    #             x = list(unique_everseen(x, key=frozenset)) #delete reverse tuples
+    #             x = [l for l in x if l[0] != '' and l[1] != ''] #delete links with empty strings
                 
-                if len(x) == 0:
-                    pass
+    #             if len(x) == 0:
+    #                 pass
                 
-                elif len(x) == 1:
-                    source = x[0][0]
-                    target = x[0][1]
-                    type1 = df3.loc[df3['name'] == source, 'label'].iloc[0]
-                    type2 = df3.loc[df3['name'] == target, 'label'].iloc[0]
+    #             elif len(x) == 1:
+    #                 source = x[0][0]
+    #                 target = x[0][1]
+    #                 type1 = df3.loc[df3['name'] == source, 'label'].iloc[0]
+    #                 type2 = df3.loc[df3['name'] == target, 'label'].iloc[0]
                     
-                    if type1 == 'ORG' and type2 == 'ORG':
-                        pass
-                    else:
-                        link['type'] = f'{type1}-{type2}'
-                        link['target'] = x[0][1]
-                        link['source'] = x[0][0]
+    #                 if type1 == 'ORG' and type2 == 'ORG':
+    #                     pass
+    #                 else:
+    #                     link['type'] = f'{type1}-{type2}'
+    #                     link['target'] = x[0][1]
+    #                     link['source'] = x[0][0]
                     
-                    if link not in links:
-                            links.append(link)
-                    else:
-                        pass
-                else:
-                    pass
-    links = [link for link in links if link != {}]
+    #                 if link not in links:
+    #                         links.append(link)
+    #                 else:
+    #                     pass
+    #             else:
+    #                 pass
+    # links = [link for link in links if link != {}]
 
-    links_df = pd.DataFrame(links)
+    # links_df = pd.DataFrame(links)
 
-    return links_df
+    # return links_df
 
 
 x = st.text_input("Enter the search term:")
