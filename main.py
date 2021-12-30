@@ -118,76 +118,69 @@ def clip_search(query, count):
     coref_idx = []
     urls1 = []
     for i in news_urls:
-        try:
-            article = Article(i)
-            entities = []
-            article.download()
-            article.parse()
-            article.nlp()
+        article = Article(i)
+        entities = []
+        article.download()
+        article.parse()
+        article.nlp()
 
+        #get the full text of the article
+        text = article.text
 
-            #get the full text of the article
-            text = article.text
+        doc = nlp(text)
 
-            doc = nlp(text)
+        tokenizer = nlp.tokenizer 
 
-            tokenizer = nlp.tokenizer 
-
-            sents = sent_tokenize(doc.text)
-            
-            counter = 0
-            
-            for j,k in enumerate(sents):
-
-                x = tokenizer(k) #split sent into words
-                
-                sent_idx += len(x) * [j]
-
-                for l in x:
-                    counter += 1
-                    toke_idx.append((counter - 1))
-                    urls.append(i)
+        sents = sent_tokenize(doc.text)
         
+        counter = 0
+        
+        for j,k in enumerate(sents):
+
+            x = tokenizer(k) #split sent into words
             
+            sent_idx += len(x) * [j]
 
-            
-            for idx, chain in enumerate(doc._.coref_clusters):
-                for mention in chain.mentions:
-                    coref_idx.append(idx)
-                    corefs.append(mention.start)
-                    urls1.append(i)
-                    
+            for l in x:
+                counter += 1
+                toke_idx.append((counter - 1))
+                urls.append(i)
+    
+        for idx, chain in enumerate(doc._.coref_clusters):
+            for mention in chain.mentions:
+                coref_idx.append(idx)
+                corefs.append(mention.start)
+                urls1.append(i)
+                
 
 
-            for k, l in enumerate(sents):
+        for k, l in enumerate(sents):
 
-                #Use Spacy to extract all the entities from the sentence and them add them to the entities list
-                entity = nlp(l)
+            #Use Spacy to extract all the entities from the sentence and them add them to the entities list
+            entity = nlp(l)
 
 
-                for ee in entity.ents:
-                    ent_dict = {}
-                    #we only want person or organization entities
-                    if ee.label_ == 'PERSON':
-                        ent_dict['name'] = ee.text.replace('\n',' ').replace("'s'", "").strip()
-                        ent_dict['label'] = ee.label_
-                        ent_dict['sent_idx'] = k
-                        ent_dict['start'] = ee.start
-                        ent_dict['end'] = ee.end
-                        ent_dict['urls'] = i
-                        nodes.append(ent_dict)
-                    elif ee.label_ == 'ORG':
-                        ent_dict['name'] = ee.text.replace('\n',' ').replace("'s", "").strip()
-                        ent_dict['label'] = ee.label_
-                        ent_dict['sent_idx'] = k 
-                        ent_dict['start'] = ee.start
-                        ent_dict['end'] = ee.end
-                        ent_dict['urls'] = i
-                        nodes.append(ent_dict)
-                    else:
-                        pass
-        except:
-            pass
+            for ee in entity.ents:
+                ent_dict = {}
+                #we only want person or organization entities
+                if ee.label_ == 'PERSON':
+                    ent_dict['name'] = ee.text.replace('\n',' ').replace("'s'", "").strip()
+                    ent_dict['label'] = ee.label_
+                    ent_dict['sent_idx'] = k
+                    ent_dict['start'] = ee.start
+                    ent_dict['end'] = ee.end
+                    ent_dict['urls'] = i
+                    nodes.append(ent_dict)
+                elif ee.label_ == 'ORG':
+                    ent_dict['name'] = ee.text.replace('\n',' ').replace("'s", "").strip()
+                    ent_dict['label'] = ee.label_
+                    ent_dict['sent_idx'] = k 
+                    ent_dict['start'] = ee.start
+                    ent_dict['end'] = ee.end
+                    ent_dict['urls'] = i
+                    nodes.append(ent_dict)
+                else:
+                    pass
     # d =  {'sent_idx': sent_idx, 'toke_idx':toke_idx, 'urls':urls}
     # e = {'toke_idx':corefs, 'coref_idx': coref_idx, 'urls':urls1}
     return urls
