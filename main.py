@@ -7,6 +7,7 @@ from pyvis.network import Network
 
 #get NLP libraries
 import nltk
+nltk.download('punkt')
 from nltk.tokenize import sent_tokenize
 from newspaper import Article
 import spacy
