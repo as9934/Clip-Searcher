@@ -1,4 +1,5 @@
 
+from newspaper.article import ArticleException
 import streamlit as st
 import streamlit.components.v1 as components
 import networkx as nx
@@ -181,7 +182,7 @@ def clip_search(query, count):
                         nodes.append(ent_dict)
                     else:
                         pass
-        except:
+        except ArticleException:
             pass
     return news_urls
     # d =  {'sent_idx': sent_idx, 'toke_idx':toke_idx, 'urls':urls}
