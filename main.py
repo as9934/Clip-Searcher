@@ -48,7 +48,7 @@ def clip_search(query, count):
     
     driver = webdriver.Remote(command_executor ='http://arisen2:WmX3RxEUQ5bvQjCquLJy@hub-cloud.browserstack.com/wd/hub', desired_capabilities = desired_cap)
     
-    graph = {}
+    # graph = {}
 
     driver.get('http://www.google.com')
 
@@ -183,7 +183,7 @@ def clip_search(query, count):
                         pass
         except:
             pass
-    return nodes
+    return news_urls
     # d =  {'sent_idx': sent_idx, 'toke_idx':toke_idx, 'urls':urls}
     # e = {'toke_idx':corefs, 'coref_idx': coref_idx, 'urls':urls1}
     # df = pd.DataFrame(d)
