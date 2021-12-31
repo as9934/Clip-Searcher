@@ -6,13 +6,10 @@ import networkx as nx
 from pyvis.network import Network
 
 #get NLP libraries
-import nltk
-nltk.download('punkt')
-from nltk.tokenize import sent_tokenize
+import nltk_download_utils
 from newspaper import Article
 import spacy
 import neuralcoref
-
 
 #get selenium and associated packages
 from selenium import webdriver
