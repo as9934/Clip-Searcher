@@ -184,7 +184,7 @@ def clip_search(query, count):
                         pass
         except ArticleException:
             pass
-    return news_urls
+    return nodes
     # d =  {'sent_idx': sent_idx, 'toke_idx':toke_idx, 'urls':urls}
     # e = {'toke_idx':corefs, 'coref_idx': coref_idx, 'urls':urls1}
     # df = pd.DataFrame(d)
