@@ -16,7 +16,7 @@ The other benefit of this process is that you start to notice connections betwee
 During a recent clip search I noticed that much of this process is highly repetitve: read article then input headline, url, publication date and summary into spreadsheet. My experience with programming has taught me that highly repetitive tasks are usually the easiest to automate, so I set off trying to do just that.
 
 
-To address that issue I decided to create a "knowledge graph" of names. In laymans terms this simply means I wanted to created a diagram which showed the relationships between different people. My operating assumptions were:
+To address that issue I decided to create a "knowledge graph" of names. In laymans terms this simply means I wanted to created a diagram which showed the relationships between different people. My operating assumption was:
 <ul>
     <li>That if a person, or its coreferent, showed up in the same sentence with an organization or another person in the same sentence in the same news article, there was a very good chance that they were related in some way</li>
 </ul>
