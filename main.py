@@ -6,6 +6,7 @@ from pyvis.network import Network
 
 #get NLP libraries
 import nltk_download_utils
+from nltk.tokenize import sent_tokenize
 from newspaper import Article
 from newspaper.article import ArticleException
 import spacy
@@ -296,7 +297,7 @@ with st.form("form"):
         
         G = nx.from_pandas_edgelist(links, 'source', 'target')
 
-        net = Network(height='800px', bgcolor='#222222', font_color='white')
+        net = Network(height='600px', bgcolor='#222222', font_color='white')
 
         net.from_nx(G)
 
@@ -306,12 +307,12 @@ with st.form("form"):
 
         try:
             path = '/tmp'
-            drug_net.save_graph(f'{path}/pyvis_graph.html')
+            net.save_graph(f'{path}/pyvis_graph.html')
             HtmlFile = open(f'{path}/pyvis_graph.html', 'r', encoding='utf-8')
 
         except:
             path = '/html_files'
-            drug_net.save_graph(f'{path}/pyvis_graph.html')
+            net.save_graph(f'{path}/pyvis_graph.html')
             HtmlFile = open(f'{path}/pyvis_graph.html', 'r', encoding='utf-8')
 
-        components.html(HtmlFile.read(), height=800)
+        components.html(HtmlFile.read(), height=600, width=600)
