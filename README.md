@@ -18,5 +18,5 @@ During a recent clip search I noticed that much of this process is highly repeti
 
 To address that issue I decided to create a "knowledge graph" of names. In laymans terms this simply means I wanted to created a diagram which showed the relationships between different people. My operating assumption was:
 <ul>
-    <li>That if a person, or its coreferent, showed up in the same sentence with an organization or another person in the same sentence in the same news article, there was a very good chance that they were related in some way</li>
+    <li>That if a person, or its coreferent, shows up in the same sentence with an organization or another person in the same news article, there was a very good chance that they were related in some way</li>
 </ul>
