@@ -3,7 +3,7 @@ Streamlit app which scrapes articles on a given topic then: <ol>
   <li>Extracts person and organizations entities</li>
   <li>Extracts all coreferences for these entities</li>
   <li>Indexes every sentence and token</li>
-  <li>Maps relationships between these entities in an interatcive knowledge graph./li> 
+  <li>Maps relationships between these entities in an interatcive knowledge graph.</li> 
 </ol>
 
 
