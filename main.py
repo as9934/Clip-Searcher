@@ -186,9 +186,9 @@ def clip_search(query, count):
     dfb  = pd.DataFrame(nodes)
 
     links = []
-    for j in list(set(dfb['urls'])):
+    for j in set(dfb['urls']):
         df1a = dfb.loc[dfb['urls'] == j]
-        for i in list(set(df1a['sent_idx'])): #filter to that sentence
+        for i in set(df1a['sent_idx']): #filter to that sentence
             link = {}
             df1 = df1a.loc[df1a['sent_idx'] == i]
             if len(df1) > 1:
