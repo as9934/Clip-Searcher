@@ -16,17 +16,17 @@ The tool is organized into five Jupyter notebooks, each handling a different ste
 
 ## 1. Scraping (`1_scraping.ipynb`)
 
-This notebook finds and downloads news articles about your topic. It uses DuckDuckGo's news search to find relevant URLs, then downloads the full text of each article. The articles are saved locally so you don't have to re-download them if you want to experiment with different analysis settings later.
+This notebook finds and downloads news articles about your topic. It uses DuckDuckGo's news search to find relevant URLs, then downloads the full text of each article. The articles are saved locally as .txt files.
 
 ## 2. Natural Language Processing (`2_nlp_processing.ipynb`)
 
-This is where the tool reads through each article and identifies the people and organizations mentioned. It uses a technique called "named entity recognition" to spot names in the text—distinguishing between, say, "Apple" the company and "apple" the fruit based on context.
+This is where the tool reads through each article and extract the people and organizations mentioned using the SpaCy entity extraction tool.
 
-The notebook also performs "coreference resolution," which is a fancy way of saying it figures out when different words refer to the same person. For example, if an article says "President Biden announced the policy. He said it would help families," the tool understands that "He" refers to "President Biden." This helps capture connections that would otherwise be missed.
+The notebook also performs "coreference resolution," meaning it will identify when different words refer to the same person. For example, if an article says "President Biden announced the policy. He said it would help families," the tool understands that "He" refers to "President Biden." This helps capture connections that would otherwise be missed.
 
 ## 3. Graph Building (`3_graph_building.ipynb`)
 
-Once we know which people and organizations appear in each article, this notebook figures out the connections between them. The rule is simple: if two names appear in the same sentence (or are linked by coreference), they're probably related somehow.
+Once we know which people and organizations appear in each article, this notebook figures out the connections between them. The rule is simple: if two entities (or their coreferents) appear in the same sentence, they're probably related somehow.
 
 The notebook creates "edges"—lines connecting related entities—and keeps track of what type of connection each one represents (person-to-person, person-to-organization, etc.).
 
@@ -49,9 +49,6 @@ uv sync
 # Install required language models (run after each uv sync)
 uv pip install "en_core_web_lg @ https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.5.0/en_core_web_lg-3.5.0.tar.gz"
 uv pip install "https://github.com/richardpaulhudson/coreferee/raw/master/models/coreferee_model_en.zip"
-
-# Launch Jupyter to run the notebooks
-uv run jupyter lab
 ```
 
 ## Project Structure
@@ -68,6 +65,6 @@ uv run jupyter lab
 
 ## Disclosure
 
-The original code for this project was written by Ari Sen. It was subsequently refactored by Claude Opus 4.5 (Anthropic) in January 2026 to use modern Python packaging with `uv`, reorganize the code into modular Jupyter notebooks, and replace browser-based scraping with the simpler DuckDuckGo search API.
+The original code for this project was written by Ari Sen. It was subsequently refactored by Claude Opus 4.5 (Anthropic) in January 2026 to use modern Python packaging with `uv`, reorganize the code into modular Jupyter notebooks and replace browser-based scraping with the simpler DuckDuckGo search API.
 
-This README was written by Claude Opus 4.5.
+This README was also mostly written by Claude Opus 4.5.
